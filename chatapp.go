@@ -31,6 +31,12 @@ var upgrader = websocket.Upgrader{
 }
 
 func main() {
+
+	// http.Dir("static"))
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "static/websocket.html")
+	})
+
 	http.HandleFunc("/ws", handleConnections)
 	go handleMessages()
 
